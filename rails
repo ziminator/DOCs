@@ -136,3 +136,6 @@ rake db:migrate
 rake db:seed
 	или за один шаг
 rake db:setup
+
+sel = Test.joins("JOIN user_test_relations ON user_test_relations.tests_id = tests.id").where('user_test_relations.users_id = 1 AND tests.level = 1')
+
