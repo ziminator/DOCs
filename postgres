@@ -1,0 +1,120 @@
+Создание пользователя для управления базами
+sudo -u postgres createuser <local username>
+
+Переключиться в сессию учётной записи postgres и запустить там оболочку
+sudo su - postgres
+psql
+
+либо запустить оболочку от имени postgres без переключения сессии
+sudo -u postgres psql
+
+создание новой роли
+create user USERNAME with password 'password';
+#---------------------------------------------------------
+
+Создать базу данных
+CREATE DATABASE test_guru;
+#---------------------------------------------------------
+
+Удалить базу данных
+DROP DATABASE test_guru;
+#---------------------------------------------------------
+
+Создать таблицу
+CREATE TABLE tests (
+postgres(# id serial PRIMARY KEY,	serial инкриментальный тип данных potgres
+postgres(# title varchar(50),
+postgres(# category_id int
+postgres(# );
+#---------------------------------------------------------
+
+Добавление данных в таблицу
+postgres=# INSERT INTO tests(title, category_id) VALUES 
+postgres-# ('HTML', 3),
+postgres-# ('Go', 1),
+postgres-# ('Ruby', 1),
+postgres-# (NULL, NULL);
+#---------------------------------------------------------
+
+Выборка данных из базы
+postgres=# SELECT *
+postgres-# FROM tests;
+ id | title | category_id 
+----+-------+-------------
+
+  1 | HTML  |           3
+  2 | Go    |           1
+  3 | Ruby  |           1
+  4 |       |            
+(4 rows)
+#---------------------------------------------------------
+
+Изменить ограничение целостности
+postgres=# ALTER TABLE tests
+postgres-# ALTER COLUMN title SET NOT NULL;
+#---------------------------------------------------------
+
+Удалить строку в таблице
+postgres=# DELETE
+postgres-# FROM tests
+postgres-# WHERE id = 4;
+DELETE 1
+#---------------------------------------------------------
+
+Выбор селектом определённого числа столбцов
+postgres=# SELECT title, id
+postgres-# FROM tests;
+ title | id 
+-------+----
+ HTML  |  1
+ Go    |  2
+ Ruby  |  3
+(3 rows)
+#---------------------------------------------------------
+
+Обновление конкретной строки в базе при выполнении условия WHERE
+postgres=# UPDATE tests 
+postgres-# SET title = 'Ruby Language'
+postgres-# WHERE title = 'Ruby';
+UPDATE 1
+#---------------------------------------------------------
+
+Выбор данных по дополнительному шаблону - пример 'R%'
+postgres=# SELECT *
+postgres-# FROM tests
+postgres-# WHERE category_id = 1
+postgres-# AND title LIKE 'R%';
+ id |     title     | category_id 
+----+---------------+-------------
+  3 | Ruby Language |           1
+(1 row)
+#---------------------------------------------------------
+
+Объединение таблиц по полям tests.category_id = categories.id
+postgres=# SELECT * FROM tests;
+ id |     title     | category_id 
+----+---------------+-------------
+  1 | HTML          |           3
+  2 | Go            |           1
+  3 | Ruby Language |           1
+(3 rows)
+
+postgres=# SELECT * FROM categories;
+ id |       title        
+----+--------------------
+  1 | Frontend
+  2 | Backend
+  3 | Movile Development
+  4 | Machine Learning
+(4 rows)
+
+postgres=# SELECT *
+postgres-# FROM tests
+postgres-# JOIN categories
+postgres-# ON tests.category_id = categories.id;
+ id |     title     | category_id | id |       title        
+----+---------------+-------------+----+--------------------
+  1 | HTML          |           3 |  3 | Movile Development
+  2 | Go            |           1 |  1 | Frontend
+  3 | Ruby Language |           1 |  1 | Frontend
+

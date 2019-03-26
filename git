@@ -1,0 +1,45 @@
+Если что-то пошло не так - можешь подглядеть в эту шпаргалку командой "objective"!*
+commit
+branch
+checkout
+cherry-pick
+reset
+revert
+rebase
+merge
+
+export tree - Поделиться результатами (export)
+import tree - Поделиться результатами (import)
+
+build level - создать уровень
+import level - добавить чей-то уровень
+show commands - показать инструкции
+git log - показать лог веток
+git log --graph - графическое представление лога
+git branch - показать активные ветки
+git branch [new_branch_name] - сделать новую ветку
+git checkout -b [new_branch] - создать новую ветку и сразу переключиться в неё
+
+git rebase master
+
+git push --set-upstream origin TestGuru_3 - отправить в удалённый репозиторий и создать в нём новую ветку
+
+
+
+git checkout [new_branch] - сделать активной вновь созданную ветку
+git merge - слияние веток (git merge bugFix)
+git rebase - более красивое слияние веток (помнит последовательность)
+^ - перемещение на один коммит назад (~num перемещение на несколько коммитов)
+master^ - первый предок ветки мастер (git checkout master^)
+
+Можно перемещаться при помощи HEAD
+git checkout C3 (перемещаемся из ветки bugFix в head, т.е. в коммит С3)
+После чего можно перемещяться при помощи HEAD - git checkout HEAD^
+
+git branch -f master HEAD~3 - принудительно переместит ветку master на 3 родителя назад от HEAD
+
+HEAD - это имя текущего выбранного коммита
+
+Убрал главную страницу localhost:3000, сделал свою по умолчанию. Страница about соответственно в localhost:3000/about.html и страница author в localhost:3000/about/author.html соответственно.
+
+git checkout -b TestGuru_2 origin/TestGuru_2

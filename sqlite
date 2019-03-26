@@ -1,0 +1,8 @@
+удаление пустых файлов миграций
+SELECT * FROM schema_migrations;
+
+выбрать версии миграций, которые нужно удалить
+DELETE FROM schema_migrations WHERE version = <'version_to_remove'>;
+
+или 
+DELETE FROM schema_migrations WHERE version IN ('<version_to_remove>', '<version_to_remove>');
