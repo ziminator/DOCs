@@ -139,3 +139,7 @@ rake db:setup
 
 sel = Test.joins("JOIN user_test_relations ON user_test_relations.tests_id = tests.id").where('user_test_relations.users_id = 1 AND tests.level = 1')
 
+user_selected = User.select(:id).first
+Test.joins("JOIN user_test_relations ON user_test_relations.tests_id = tests.id").where("user_test_relations.users_id = 'user_selected' AND tests.level = #{level}")
+
+Test.select(:title).order(title: :desc).joins('JOIN categories ON tests.categories_id = categories.id').where("category = '#{cat}'")
