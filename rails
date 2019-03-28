@@ -46,7 +46,7 @@ $ bin/rails generate migration AddPartNumberToProducts part_number:string:index
 добавить внешний ключ
 $ add_foreign_key :articles, :authors
 
-Миграция сразу с ключём
+Миграция сразу с ключом
 $ bin/rails generate migration AddPartNumberToProducts part_number:string
 
 Добавление миграции
@@ -143,3 +143,13 @@ user_selected = User.select(:id).first
 Test.joins("JOIN user_test_relations ON user_test_relations.tests_id = tests.id").where("user_test_relations.users_id = 'user_selected' AND tests.level = #{level}")
 
 Test.select(:title).order(title: :desc).joins('JOIN categories ON tests.categories_id = categories.id').where("category = '#{cat}'")
+
+Test.joins("JOIN user_test_relations ON user_test_relations.tests_id = tests.id").where("user_test_relations.users_id = id AND tests.level = #{level}")
+
+Test.select(:title).order(title: :desc).joins('JOIN categories ON tests.categories_id = categories.id').where("category = '#{cat}'").pluck(:title)
+
+Test.joins("JOIN user_test_relations ON user_test_relations.tests_id = tests.id").where("user_test_relations.users_id = 1 AND tests.level = #{level}")
+
+.schema --indent questions - отображает структуру таблицы
+
+
