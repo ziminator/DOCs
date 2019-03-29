@@ -152,4 +152,9 @@ Test.joins("JOIN user_test_relations ON user_test_relations.tests_id = tests.id"
 
 .schema --indent questions - отображает структуру таблицы
 
+has_one
+has_many (:through)
+has_and_belongs_to_many
+belongs_to
+
 
