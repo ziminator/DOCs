@@ -157,4 +157,33 @@ has_many (:through)
 has_and_belongs_to_many
 belongs_to
 
+SCOPE методы
+Test.where(level: 0..1).order(created_at: :desc)
+scope :easy, -> { where(level: 0..1).order(created_at: :desc) }
+scope :easy_ruby, -> { easy.where(title: 'Ruby' }
+
+использование scope метода через переменную level
+scope :easy, -> (level) { where(level: level).order(created_at: :desc) }
+Вызов будет выглядеть как Test.easy(1) и можно добавлять дополнительные параметры к запросу Test.easy(0).limit(1)
+
+определение default scope
+default_scope { order(created_at: :desc) } определение scope метода по умолчанию
+
+Отменить scope по дефолту
+Test.unscoped.all
+
+Test.easy.limit(1)
+Test.easy.where(something)
+
+def self.easy(level)
+  where(level: level).first
+end
+эквивалентен
+scope :easy, -> (level) { where(level: level) }
+только при тспользовании эземпляра класса не работает сцепление в запросах.
+
+валидации. проверка условий при сохранении в базу
+validates :title, persence: true, uniqueness: true
+
+
 
