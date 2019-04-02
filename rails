@@ -150,6 +150,6 @@ Test.select(:title).order(title: :desc).joins('JOIN categories ON tests.categori
 
 Test.joins("JOIN user_test_relations ON user_test_relations.tests_id = tests.id").where("user_test_relations.users_id = 1 AND tests.level = #{level}")
 
-.schema --indent questions - отображает структуру таблицы
+.schema --indent questions - отображает структуру таблицы questions
 
 
