@@ -185,5 +185,6 @@ scope :easy, -> (level) { where(level: level) }
 валидации. проверка условий при сохранении в базу
 validates :title, persence: true, uniqueness: true
 
-
+связывание происходит в файле routes.rb из каталога config
+bin/rails routes - просмотр имеющихсф маршрутов
 
